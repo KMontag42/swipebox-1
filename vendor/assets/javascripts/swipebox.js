@@ -21,6 +21,7 @@
 				nextSlide: null,
 				prevSlide: null,
 				lastSlide: null,
+				firstSlide: null,
 				loopAtEnd: false,
 				autoplayVideos: false,
 				queryStringData: {},
@@ -883,10 +884,14 @@
 						plugin.settings.prevSlide();
 					}
 				} else {
-					$( '#swipebox-overlay' ).addClass( 'leftSpring' );
-					setTimeout( function() {
-						$( '#swipebox-overlay' ).removeClass( 'leftSpring' );
-					}, 500 );
+					if ( plugin.settings.firstSlide ) {
+						plugin.settings.firstSlide(index);
+					} else {
+						$( '#swipebox-overlay' ).addClass( 'leftSpring' );
+						setTimeout( function() {
+							$( '#swipebox-overlay' ).removeClass( 'leftSpring' );
+						}, 500 );
+					}
 				}
 			},
 
